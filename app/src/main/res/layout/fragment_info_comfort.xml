@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nameAvtomoy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:textColor="#FFF"
+        android:background="#000"
+        ></TextView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/toolCarHead"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="20dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:text="Комфорт"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:textColorHighlight="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TableLayout
+                android:id="@+id/TableComfort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+            </TableLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Способы оплаты"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:textColorHighlight="@color/colorPrimaryDark"
+                android:textSize="18sp"></TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PriceVar"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

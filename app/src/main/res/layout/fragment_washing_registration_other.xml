@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_washing1"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
+
+    <LinearLayout
+        android:id="@+id/DataPick"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:autoLink="all"
+                android:clickable="false"
+                android:focusable="true"
+                android:fontFamily="@font/roboto"
+                android:singleLine="false"
+                android:text="Выберите дату"
+                android:textColor="@color/linkfadeonpress"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/Data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/Data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:autoLink="all"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto"
+                android:singleLine="false"
+                android:text="22.02.2019"
+                android:textColor="@color/linkfadeonpress"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/ComplexPick"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/DataPick"
+                app:layout_constraintTop_toBottomOf="@+id/DataPick" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/infoBtn"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="100dp"
+                android:backgroundTint="@color/projectOrange"
+                android:scaleType="fitXY"
+                android:src="@drawable/info"
+                app:itemIconTint="@drawable/bottom_record_colors"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/MyWashBtn"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:backgroundTint="@color/projectOrange"
+                android:scaleType="fitXY"
+                android:src="@drawable/carwash"
+                app:itemIconTint="@drawable/bottom_record_colors"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/mapsBtn"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:backgroundTint="@color/projectOrange"
+                android:scaleType="fitXY"
+                android:src="@drawable/map_spot"
+                app:itemIconTint="@drawable/bottom_record_colors"></ImageButton>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLComplexPick"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DataPick"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/ComplexPick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoLink="all"
+            android:gravity="center_vertical"
+            android:clickable="false"
+            android:focusable="true"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:singleLine="false"
+            android:text="Выберите коплекс"
+            android:textColor="@color/linkfadeonpress"
+            android:textSize="18sp"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/AllComplex"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/roboto"
+            android:singleLine="false"
+            android:layout_weight="1"
+            android:text="@string/all"
+            android:textSize="18sp"
+            android:autoLink="all"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ComplexAdded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LLComplexPick" />
+
+    <LinearLayout
+        android:id="@+id/SelectComplex"
+        android:visibility="gone"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/LLSelectServices"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ComplexAdded"
+        android:orientation="horizontal">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <GridView
+                android:id="@+id/SelectComplexGVOther"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:columnCount="2">
+            </GridView>
+        </ScrollView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/LLSelectServices"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SelectComplex"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/ServicePick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoLink="all"
+            android:gravity="center_vertical"
+            android:clickable="false"
+            android:focusable="true"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:singleLine="false"
+            android:text="Выберите услугу"
+            android:textColor="@color/linkfadeonpress"
+            android:textSize="18sp"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/AllService"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/roboto"
+            android:singleLine="false"
+            android:layout_weight="1"
+            android:text="@string/all"
+            android:textSize="18sp"
+            android:autoLink="all"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ServiceAdded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LLSelectServices" />
+
+    <LinearLayout
+        android:id="@+id/SelectServices"
+        android:visibility="gone"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ServiceAdded"
+        android:orientation="horizontal">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <GridView
+                android:id="@+id/SelectServicesGVOther"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:columnCount="2">
+            </GridView>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SelectServices"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Время мойки"
+            android:textAlignment="textEnd" />
+
+        <TextView
+            android:id="@+id/TimeTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:textColor="@color/projectOrange" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Итого"
+            android:textAlignment="textEnd" />
+
+        <TextView
+            android:id="@+id/PriceTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:textColor="@color/projectOrange" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/nextButtonMain"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/projectOrange"
+        android:fontFamily="@font/roboto"
+        android:onClick="nextButtonMain_onClick"
+        android:text="@string/nextString"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

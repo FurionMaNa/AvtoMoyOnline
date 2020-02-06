@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/head_Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:gravity="end"
+    android:orientation="horizontal"
+    tools:showIn="@layout/activity_auto_reg">
+
+    <Button
+        android:id="@+id/hidenavbar_button"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginTop="40sp"
+        android:layout_marginEnd="20sp"
+        android:background="@drawable/ic_crest"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="24sp" />
+
+</LinearLayout>

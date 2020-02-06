@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Завершение заказа"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textColorHighlight="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></TextView>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/roboto"
+                android:text="21.01.2019, 13:00"
+                android:textAlignment="center"
+                android:textColor="@color/linkfadeonpress"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Status"></TextView>
+
+            <LinearLayout
+                android:id="@+id/lcar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/time">
+
+                <TextView
+                    android:id="@+id/car"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/tv_car_num_border"
+                    android:fontFamily="@font/roboto"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="FF 123 FF"
+                    android:textColor="@color/linkfadeonpress"
+                    android:textSize="14sp"></TextView>
+
+                <TextView
+                    android:id="@+id/carReg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/tv_car_num_border"
+                    android:fontFamily="@font/roboto"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="98"
+                    android:textColor="@color/linkfadeonpress"
+                    android:textSize="14sp"></TextView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Самая лучшая автомойка"
+                android:textColor="@color/linkfadeonpress"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/lcar"></TextView>
+
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Санкт-Петербург, ул. Счастливая, д. 100/1"
+                android:textColor="@color/linkfadeonpress"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv1"></TextView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2"
+                    android:text="Вы помыли автомобиль?"
+                    android:textAlignment="textStart"
+                    android:textColor="#000"
+                    android:textSize="18dp" />
+
+                <Button
+                    android:id="@+id/yesWash"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
+                    android:clickable="true"
+                    android:text="Да"
+                    android:textColor="#fff"
+                    android:textSize="18dp"></Button>
+
+                <Button
+                    android:id="@+id/noWash"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_white_button"
+                    android:clickable="true"
+                    android:text="нет"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18dp"></Button>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editTextSendChat"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/comment_edit"
+                android:gravity="top|left"
+                android:hint="Сооющение владельцу автомойки (по желанию)"
+                android:inputType="textCapSentences|textMultiLine"
+                android:lines="8"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusableInTouchMode="false"
+        android:isScrollContainer="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sv"
+        android:layout_marginTop="170dp"
+        android:layout_marginBottom="120dp"
+        android:id="@+id/bt">
+    <Button
+        android:id="@+id/EndRec"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/projectOrange"
+        android:fontFamily="@font/roboto"
+        android:onClick="nextButtonMain_onClick"
+        android:text="Завершить"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

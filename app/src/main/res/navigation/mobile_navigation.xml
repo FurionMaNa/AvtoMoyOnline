@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/whiteFragment2">
+
+    <fragment
+        android:id="@+id/whiteFragment2"
+        android:name="com.project.avtomoy.WhiteFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/white_fragment" />
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.project.avtomoy.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_tools"
+        android:name="com.project.avtomoy.ui.tools.ToolsFragment"
+        android:label="@string/menu_tools"
+        tools:layout="@layout/fragment_tools" />
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.project.avtomoy.ui.history.HistoryFragment"
+        android:label="@string/menu_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/nav_info"
+        android:name="com.project.avtomoy.ui.info.InfoFragment"
+        android:label="@string/menu_info"
+        tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="com.project.avtomoy.ui.chat.ChatFragment"
+        android:label="@string/menu_chat"
+        tools:layout="@layout/fragment_chat" />
+
+</navigation>
