@@ -135,7 +135,7 @@ public class ThreadRequest extends AsyncTask<String,Void,String> {
                     URL_API+="/email-exist";
                     break;
             }
-            URL url = new URL(URL_API);
+            URL url = new URL(URL_API.replace(" ", ""));
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);

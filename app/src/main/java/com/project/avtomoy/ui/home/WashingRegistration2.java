@@ -111,7 +111,6 @@ public class WashingRegistration2 extends Fragment {
                 e.printStackTrace();
             }
 
-
             view.findViewById(R.id.OtherAvtoMoyTV).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

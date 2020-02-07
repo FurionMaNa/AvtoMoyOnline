@@ -135,9 +135,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     }
 
                     @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
+                    public void onNothingSelected(AdapterView<?> parent) { }
                 });
             } catch (ExecutionException e) {
                 e.printStackTrace();
