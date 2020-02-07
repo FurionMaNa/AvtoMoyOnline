@@ -137,13 +137,15 @@ public class InfoContactFragment extends Fragment {
             view.findViewById(R.id.textView9).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                    browserIntent.setData(Uri.parse("https://goo.gl/maps/MbWudW2F2n15maTj8"));
-                    startActivity(browserIntent);*/
-                    Uri gmmIntentUri = Uri.parse("geo:0,0?q="+AutoRegActivity.loadAboutCarClass.getResponse().getGeometry().getCoordinates().get(0)+","+AutoRegActivity.loadAboutCarClass.getResponse().getGeometry().getCoordinates().get(1));
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                    mapIntent.setPackage("com.google.android.apps.maps");
-                    startActivity(mapIntent);
+                    try {
+                        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+AutoRegActivity.loadAboutCarClass.getResponse().getGeometry().getCoordinates().get(0)+","+AutoRegActivity.loadAboutCarClass.getResponse().getGeometry().getCoordinates().get(1));
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                    }catch (Exception e){
+                        Toast.makeText(getActivity(),"На данном устройстве отключено приложение Google Maps",Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
                 }
             });
             spinner=view.findViewById(R.id.timeWork);

@@ -154,7 +154,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     durationFilter = position;
                     String str;
                     try {
-                        str = new ThreadRequest().execute("get-car-washes-by-filter", token, "approximateTime=" + durationStr.get(position) + "&timeInterval=" + start.get(intervalFilter)).get();
+                        str = new ThreadRequest().execute("get-car-washes-by-filter", token, "approximateTime=" + duration.get(position) + "&timeInterval=" + start.get(intervalFilter)).get();
                         LCWC = deserializeFilterResult(str);
                         Log.i("MyLog", "get-car-washes-by-filter");
                         mapFragment.getMapAsync(MapsFragment.this);

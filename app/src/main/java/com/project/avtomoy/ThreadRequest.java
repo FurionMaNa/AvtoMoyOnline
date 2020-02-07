@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,14 +27,10 @@ public class ThreadRequest extends AsyncTask<String,Void,String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        if(AutoRegActivity.context!=null) {
-        }
     }
 
     @Override
     protected void onPostExecute(String s) {
-        if(AutoRegActivity.context!=null) {
-        }
         super.onPostExecute(s);
     }
 
@@ -143,6 +140,7 @@ public class ThreadRequest extends AsyncTask<String,Void,String> {
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
             conn.setDoInput(true);
+            conn.setConnectTimeout (500000);
             if((strings[0].equals("my-cars-page"))||(strings[0].equals("get-signed-record"))||(strings[0].equals("history-page"))||(strings[0].equals("get-services2"))||(strings[0].equals("get-add-services2"))||(strings[0].equals("get-time-and-price"))||(strings[0].equals("get-select-map-periods"))||(strings[0].equals("get-avaible-times"))||(strings[0].equals("get-car-washes-by-filter"))||(strings[0].equals("carwash-contacts-page2"))||(strings[0].equals("chat-inbox-page"))||(strings[0].equals("is-free"))||(strings[0].equals("carwash-contacts-page"))||(strings[0].equals("carwash-sales-page"))||(strings[0].equals("carwash-comfort-page"))||(strings[0].equals("get-available-dates"))||(strings[0].equals("about-car-wash"))||(strings[0].equals("get-mailing"))){
 
                 conn.setRequestMethod("GET");
@@ -156,6 +154,7 @@ public class ThreadRequest extends AsyncTask<String,Void,String> {
                     conn.setRequestProperty("Content-Length", "" + Integer.toString(strings[1].getBytes().length));
                 }
             }
+            conn.setReadTimeout (500000);
             OutputStream os = conn.getOutputStream();
             if((strings[0].equals("get-services"))||(strings[0].equals("get-add-services"))||(strings[0].equals("signup-car-wash"))||(strings[0].equals("remove-transport"))||(strings[0].equals("add-transport"))||(strings[0].equals("change-transport"))||(strings[0].equals("change-settings"))||(strings[0].equals("cancel-record"))||(strings[0].equals("complete-record"))||(strings[0].equals("advert-viewed"))){
                 data = strings[2].getBytes("UTF-8");
@@ -170,7 +169,7 @@ public class ThreadRequest extends AsyncTask<String,Void,String> {
             if(strings[0].equals("get-signed-record")) {
                 Log.i("MyLog","get-signed-record");
             }
-            is = conn.getInputStream();
+            is =  new BufferedInputStream(conn.getInputStream());
             byte[] buffer = new byte[8192];
             int bytesRead;
             while ((bytesRead = is.read(buffer)) != -1) {
