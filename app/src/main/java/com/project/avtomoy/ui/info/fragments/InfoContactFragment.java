@@ -49,6 +49,7 @@ public class InfoContactFragment extends Fragment {
             TextView tvName = view.findViewById(R.id.nameAvtomoy);
             TextView tvPhone1 = view.findViewById(R.id.textView10);
             TextView tvPhone2 = view.findViewById(R.id.textView11);
+            TextView tvPhone3 = view.findViewById(R.id.textView123);
             TextView tvSite = view.findViewById(R.id.textView13);
             TextView tvAddress = view.findViewById(R.id.textView8);
             ImageView photo = view.findViewById(R.id.imageView4);
@@ -67,73 +68,144 @@ public class InfoContactFragment extends Fragment {
             String s = AutoRegActivity.loadAboutCarClass.getResponse().getPhoto();
             new DownloadImageTask(photo).execute(s);
             tvName.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(0).getValue());
-            tvPhone1.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(1).getValue());
-            tvPhone2.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(2).getValue());
-            tvSite.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(4).getValue());
+            int i=1;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 1) {
+                    tvPhone1.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                }
+            }catch (ArrayIndexOutOfBoundsException e){
+                tvPhone1.setVisibility(View.GONE);
+            }
+            i++;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 1) {
+                    tvPhone2.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                }
+            }catch (ArrayIndexOutOfBoundsException e){
+                tvPhone2.setVisibility(View.GONE);
+            }
+            i++;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 1) {
+                    tvPhone3.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                }
+            }catch (ArrayIndexOutOfBoundsException e){
+                tvPhone2.setVisibility(View.GONE);
+            }
+            i++;
             tvAddress.setText(AutoRegActivity.loadAboutCarClass.getResponse().getAddress());
-            tvSite.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(4).getValue());
-            tvSite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                    browserIntent.setData(Uri.parse(v.getTag().toString()));
-                    startActivity(browserIntent);
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 2) {
+                    tvSite.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                    tvSite.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                    tvSite.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                            browserIntent.setData(Uri.parse(v.getTag().toString()));
+                            startActivity(browserIntent);
+                        }
+                    });
                 }
-            });
-            ibVKApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(5).getValue());
-            ibVKApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                    browserIntent.setData(Uri.parse(v.getTag().toString()));
-                    startActivity(browserIntent);
+            }catch (ArrayIndexOutOfBoundsException e){
+                tvSite.setVisibility(View.GONE);
+            }
+            i++;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 3) {
+                    ibVKApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                    ibVKApp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                            browserIntent.setData(Uri.parse(v.getTag().toString()));
+                            startActivity(browserIntent);
+                        }
+                    });
                 }
-            });
-            ibFaceBookApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(6).getValue());
-            ibFaceBookApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                    browserIntent.setData(Uri.parse(v.getTag().toString()));
-                    startActivity(browserIntent);
+            }catch (ArrayIndexOutOfBoundsException e){
+                ibVKApp.setVisibility(View.GONE);
+            }
+            i++;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 3) {
+                    ibFaceBookApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                    ibFaceBookApp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                            browserIntent.setData(Uri.parse(v.getTag().toString()));
+                            startActivity(browserIntent);
+                        }
+                    });
                 }
-            });
-            ibInstagramApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(7).getValue());
-            ibInstagramApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                    browserIntent.setData(Uri.parse(v.getTag().toString()));
-                    startActivity(browserIntent);
+            }catch (ArrayIndexOutOfBoundsException e){
+                ibFaceBookApp.setVisibility(View.GONE);
+            }
+            i++;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 3) {
+                    ibInstagramApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                    ibInstagramApp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                            browserIntent.setData(Uri.parse(v.getTag().toString()));
+                            startActivity(browserIntent);
+                        }
+                    });
                 }
-            });
-            ibTelegramApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(8).getValue());
-            ibTelegramApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                    browserIntent.setData(Uri.parse(v.getTag().toString()));
-                    startActivity(browserIntent);
+            }catch (ArrayIndexOutOfBoundsException e){
+                ibInstagramApp.setVisibility(View.GONE);
+            }
+            i++;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 4) {
+                    ibTelegramApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                    ibTelegramApp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                            browserIntent.setData(Uri.parse(v.getTag().toString()));
+                            startActivity(browserIntent);
+                        }
+                    });
                 }
-            });
-            ibWhatsApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(9).getValue());
-            ibWhatsApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                    browserIntent.setData(Uri.parse(v.getTag().toString()));
-                    startActivity(browserIntent);
+            }catch (ArrayIndexOutOfBoundsException e){
+                ibTelegramApp.setVisibility(View.GONE);
+            }
+            i++;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 4) {
+                    ibWhatsApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(9).getValue());
+                    ibWhatsApp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                            browserIntent.setData(Uri.parse(v.getTag().toString()));
+                            startActivity(browserIntent);
+                        }
+                    });
                 }
-            });
-            ibViberApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(10).getValue());
-            ibViberApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                    browserIntent.setData(Uri.parse(v.getTag().toString()));
-                    startActivity(browserIntent);
+            }catch (ArrayIndexOutOfBoundsException e){
+                ibWhatsApp.setVisibility(View.GONE);
+            }
+            i++;
+            try {
+                if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 4) {
+                    ibViberApp.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(10).getValue());
+                    ibViberApp.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                            browserIntent.setData(Uri.parse(v.getTag().toString()));
+                            startActivity(browserIntent);
+                        }
+                    });
                 }
-            });
+            }catch (ArrayIndexOutOfBoundsException e){
+                ibViberApp.setVisibility(View.GONE);
+            }
             view.findViewById(R.id.textView9).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

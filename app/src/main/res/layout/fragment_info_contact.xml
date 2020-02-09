@@ -197,6 +197,18 @@
                         android:layout_column="2"
                         android:text="+7 (666) 666-66-66"
                         android:textSize="18sp"
+                        android:layout_marginBottom="10sp"
+                        tools:layout_editor_absoluteX="119dp"
+                        tools:layout_editor_absoluteY="140dp" />
+
+                    <TextView
+                        android:id="@+id/textView123"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="+7 (666) 666-66-66"
+                        android:textSize="18sp"
                         tools:layout_editor_absoluteX="119dp"
                         tools:layout_editor_absoluteY="140dp" />
 

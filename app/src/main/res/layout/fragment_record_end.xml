@@ -52,43 +52,77 @@
 
             <LinearLayout
                 android:id="@+id/lcar"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/tv_car_num_border"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.034"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/time">
 
-                <TextView
-                    android:id="@+id/car"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/tv_car_num_border"
-                    android:fontFamily="@font/roboto"
-                    android:paddingStart="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="8dp"
-                    android:paddingBottom="4dp"
-                    android:text="FF 123 FF"
-                    android:textColor="@color/linkfadeonpress"
-                    android:textSize="14sp"></TextView>
+                    android:layout_gravity="start"
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/carReg"
+                    <TextView
+                        android:id="@+id/car"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="2dp"
+                        android:paddingStart="10dp"
+                        android:paddingBottom="2dp"
+                        android:layout_marginTop="8dp"
+                        android:text="FF 123 FF"
+                        android:textColor="@color/linkfadeonpress"
+                        android:textSize="14sp"></TextView>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/tv_car_num_border"
-                    android:fontFamily="@font/roboto"
-                    android:paddingStart="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="8dp"
-                    android:paddingBottom="4dp"
-                    android:text="98"
-                    android:textColor="@color/linkfadeonpress"
-                    android:textSize="14sp"></TextView>
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/tv_car_num_border">
+
+                    <TextView
+                        android:id="@+id/carReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="8dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:text="982"
+                        android:textColor="@color/linkfadeonpress"
+                        android:textSize="14sp"></TextView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_marginStart="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="RUS"
+                            android:paddingStart="2dp"
+                            android:textSize="30px"></TextView>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="4px"
+                            android:paddingBottom="5dp"
+                            android:layout_marginStart="1dp"
+                            android:src="@drawable/flagrr"></ImageView>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
