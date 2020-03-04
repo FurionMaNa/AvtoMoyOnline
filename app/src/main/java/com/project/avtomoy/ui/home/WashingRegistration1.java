@@ -28,6 +28,7 @@ import com.project.avtomoy.ServicesClass;
 import com.project.avtomoy.ThreadRequest;
 import com.project.avtomoy.TimeAndPriceClass;
 import com.project.avtomoy.ui.AdvetFinishClass;
+import com.project.avtomoy.ui.tools.ToolsFragment;
 import com.project.avtomoy.ui.tools.fragments.Car.Car;
 
 import java.sql.Date;
@@ -168,6 +169,14 @@ public class WashingRegistration1 extends Fragment {
                 }
 
             }else{
+
+                Bundle args = new Bundle();
+                args.putString("token", token);
+                args.putString("nocar", "true");
+                ToolsFragment fragmentTools=new ToolsFragment();
+                fragmentTools.setArguments(args);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragmentTools).commit();
+
                 Toast.makeText(getActivity(),"У вас нет машин! Зарегистрируйте хотя бы одну!",Toast.LENGTH_SHORT).show();
             }
             addedComplexView = view.findViewById(R.id.ComplexAdded);
@@ -325,7 +334,7 @@ public class WashingRegistration1 extends Fragment {
                     try {
                         str_answer = new ThreadRequest().execute("get-mailing", token).get();
                         advetFinishClass=deserializeAdvetrResult(str_answer);
-                        if(advetFinishClass!=null) {
+                        if((advetFinishClass!=null)&&(advetFinishClass.getResponse()!=null)) {
                             DialogAdvert dialog = new DialogAdvert(advetFinishClass);
                             dialog.show(getFragmentManager(), "SetCar");
                         }

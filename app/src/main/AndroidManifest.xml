@@ -44,7 +44,9 @@
             android:label="@string/title_activity_auto_reg"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="adjustPan"
+            android:largeHeap="true"
+            android:supportsRtl="true" />
         <activity
             android:name=".RegistryActivity"
             android:screenOrientation="portrait" />
@@ -53,7 +55,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

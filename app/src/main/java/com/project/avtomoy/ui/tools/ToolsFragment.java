@@ -14,12 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 public class ToolsFragment extends Fragment {
     public String token;
+    public static String nocar;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_tools, container, false);
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             token= bundle.getString("token", "false");
+            nocar = bundle.getString("nocar", "false");
         }
         Bundle args = new Bundle();
         args.putString("token", token);

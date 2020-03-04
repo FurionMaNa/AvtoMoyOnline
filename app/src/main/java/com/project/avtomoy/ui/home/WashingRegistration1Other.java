@@ -358,7 +358,7 @@ public class WashingRegistration1Other extends Fragment {
                     try {
                         str_answer = new ThreadRequest().execute("get-mailing", token).get();
                         advetFinishClass=deserializeAdvetrResult(str_answer);
-                        if(advetFinishClass!=null) {
+                        if((advetFinishClass!=null)&&(advetFinishClass.getResponse()!=null)) {
                             DialogAdvert dialog = new DialogAdvert(advetFinishClass);
                             dialog.show(getFragmentManager(), "SetCar");
                         }

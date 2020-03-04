@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Avtomoy App</string>
+    <string name="app_name">StepCar</string>
     <string name="uregistrationString"><u>Регистрация</u> </string>
     <string name="registrationString">Регистрация </string>
     <string name="authstring">Авторизация</string>
