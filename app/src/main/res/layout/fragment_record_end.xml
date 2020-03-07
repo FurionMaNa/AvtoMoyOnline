@@ -8,7 +8,7 @@
     <ScrollView
         android:id="@+id/sv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -190,7 +190,7 @@
                     android:id="@+id/noWash"
                     android:layout_width="30dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_white_button"
@@ -210,7 +210,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/comment_edit"
                 android:gravity="top|left"
-                android:hint="Сооющение владельцу автомойки (по желанию)"
+                android:hint="Сообщение владельцу автомойки (по желанию)"
                 android:inputType="textCapSentences|textMultiLine"
                 android:lines="8"
                 android:paddingLeft="10dp"
@@ -221,33 +221,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:focusableInTouchMode="false"
+                android:isScrollContainer="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSendChat"
+                android:id="@+id/bt">
+                <Button
+                    android:id="@+id/EndRec"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/projectOrange"
+                    android:fontFamily="@font/roboto"
+                    android:text="Завершить"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:focusableInTouchMode="false"
-        android:isScrollContainer="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sv"
-        android:layout_marginTop="170dp"
-        android:layout_marginBottom="120dp"
-        android:id="@+id/bt">
-    <Button
-        android:id="@+id/EndRec"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/projectOrange"
-        android:fontFamily="@font/roboto"
-        android:onClick="nextButtonMain_onClick"
-        android:text="Завершить"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

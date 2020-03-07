@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.project.avtomoy.AutoRegActivity;
 import com.project.avtomoy.LoadAboutCarClass;
@@ -17,7 +18,6 @@ import com.project.avtomoy.ui.info.fragments.InfoComfortFragment;
 import com.project.avtomoy.ui.info.fragments.InfoContactFragment;
 import com.project.avtomoy.ui.info.fragments.InfoDutyFragment;
 import com.project.avtomoy.ui.info.fragments.InfoSalesFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.concurrent.ExecutionException;
 

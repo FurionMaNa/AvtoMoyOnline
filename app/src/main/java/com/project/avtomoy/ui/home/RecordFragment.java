@@ -41,6 +41,12 @@ public class RecordFragment extends Fragment {
         int time_start = AutoRegActivity.GSRL.getResponse().getTime_start();
         String hours_start = String.valueOf(time_start / 60);
         String minutes_start = String.valueOf(time_start % 60);
+        if(minutes_start.length()==1){
+            minutes_start="0"+minutes_start;
+        }
+        if(hours_start.length()==1){
+            hours_start="0"+hours_start;
+        }
         TextView time_date=view.findViewById(R.id.time);
         TextView carnum=view.findViewById(R.id.car);
         carnum.setText(AutoRegActivity.GSRL.getResponse().getCar_number());
@@ -127,39 +133,76 @@ public class RecordFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(AutoRegActivity.GSRL.getStatus()==1) {
-                    Bundle args = new Bundle();
-                    RecordEndFragment endRecord = new RecordEndFragment();
-                    args.putString("token", AutoRegActivity.token);
-                    endRecord.setArguments(args);
-                    LoadFragment(endRecord);
+                    AlertDialog.Builder dialog2 = new AlertDialog.Builder(getActivity());
+                    dialog2.setMessage("Вы уверены?")
+                            .setTitle("Завершение мойки").setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Bundle args = new Bundle();
+                            RecordEndFragment endRecord = new RecordEndFragment();
+                            args.putString("token", AutoRegActivity.token);
+                            endRecord.setArguments(args);
+                            LoadFragment(endRecord);
+                        }
+                    }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    }).create().show();
                 }else{
-                    try {
-                        String s=new ThreadRequest().execute("cancel-record", AutoRegActivity.token,"recordId="+AutoRegActivity.GSRL.getResponse().getId().toString()).get();
-                        LRC=deserializeResponseResult(s);
-                        if(LRC!=null) {
-                            if (!LRC.getError()) {
-                                Toast.makeText(getActivity(), "Запись отменена!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getActivity(), "Ошибка! Данные обновлены!", Toast.LENGTH_SHORT).show();
-                            }
+                    AlertDialog.Builder dialog2 = new AlertDialog.Builder(getActivity());
+                    dialog2.setMessage("Вы уверены?")
+                            .setTitle("Отмена мойки").setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            try {
+                                String s = new ThreadRequest().execute("cancel-record", AutoRegActivity.token, "recordId=" + AutoRegActivity.GSRL.getResponse().getId().toString()).get();
+                                LRC = deserializeResponseResult(s);
+                                if (LRC != null) {
+                                    if (!LRC.getError()) {
+                                        Toast.makeText(getActivity(), "Запись отменена!", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getActivity(), "Ошибка! Данные обновлены!", Toast.LENGTH_SHORT).show();
+                                    }
 
-                            if(AutoRegActivity.GSRL.getAdvert().size()!=0) {
-                                if(LRC.getAdvert().get(0)!=null) {
-                                    if (LRC.getAdvert().get(0).getPhoto_path() != null) {
-                                        ImageView image = new ImageView(getActivity());
-                                        try {
-                                            new DownloadImageTask(image).execute(LRC.getAdvert().get(0).getPhoto_path());
-                                        } catch (Exception e) {
+                                    if (AutoRegActivity.GSRL.getAdvert().size() != 0) {
+                                        if (LRC.getAdvert().get(0) != null) {
+                                            if (LRC.getAdvert().get(0).getPhoto_path() != null) {
+                                                ImageView image = new ImageView(getActivity());
+                                                try {
+                                                    new DownloadImageTask(image).execute(LRC.getAdvert().get(0).getPhoto_path());
+                                                } catch (Exception e) {
 
-                                        }
-                                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
-                                                .setView(image).setNegativeButton("ОК",
+                                                }
+                                                AlertDialog.Builder dialog3 = new AlertDialog.Builder(getActivity())
+                                                        .setView(image).setNegativeButton("ОК",
+                                                                new DialogInterface.OnClickListener() {
+                                                                    public void onClick(DialogInterface dialog, int id) {
+                                                                        String s;
+                                                                        try {
+                                                                            s = new ThreadRequest().execute("advert-viewed", AutoRegActivity.token, "advertId=" + LRC.getAdvert().get(0).getId().toString()).get();
+                                                                            s += "";
+                                                                        } catch (ExecutionException e) {
+                                                                            e.printStackTrace();
+                                                                        } catch (InterruptedException e) {
+                                                                            e.printStackTrace();
+                                                                        }
+                                                                        dialog.cancel();
+                                                                        Bundle args = new Bundle();
+                                                                        HomeFragment homeRecord = new HomeFragment();
+                                                                        args.putString("token", AutoRegActivity.token);
+                                                                        homeRecord.setArguments(args);
+                                                                        LoadFragment(homeRecord);
+                                                                    }
+                                                                });
+                                                dialog3.show();
+                                            } else {
+                                                AlertDialog.Builder dialog3 = new AlertDialog.Builder(getActivity());
+                                                dialog3.setMessage(LRC.getAdvert().get(0).getText())
+                                                        .setTitle(LRC.getAdvert().get(0).getTitle()).setNegativeButton("ОК",
                                                         new DialogInterface.OnClickListener() {
                                                             public void onClick(DialogInterface dialog, int id) {
-                                                                String s;
                                                                 try {
-                                                                    s = new ThreadRequest().execute("advert-viewed", AutoRegActivity.token, "advertId=" + LRC.getAdvert().get(0).getId().toString()).get();
-                                                                    s += "";
+                                                                    String s = new ThreadRequest().execute("advert-viewed", AutoRegActivity.token, "advertId=" + LRC.getAdvert().get(0).getId().toString()).get();
                                                                 } catch (ExecutionException e) {
                                                                     e.printStackTrace();
                                                                 } catch (InterruptedException e) {
@@ -173,48 +216,33 @@ public class RecordFragment extends Fragment {
                                                                 LoadFragment(homeRecord);
                                                             }
                                                         });
-                                        dialog.show();
+                                                dialog3.show();
+                                            }
+                                        } else {
+                                            Bundle args = new Bundle();
+                                            HomeFragment homeRecord = new HomeFragment();
+                                            args.putString("token", AutoRegActivity.token);
+                                            homeRecord.setArguments(args);
+                                            LoadFragment(homeRecord);
+                                        }
                                     } else {
-                                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                                        dialog.setMessage(LRC.getAdvert().get(0).getText())
-                                                .setTitle(LRC.getAdvert().get(0).getTitle()).setNegativeButton("ОК",
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        try {
-                                                            String s = new ThreadRequest().execute("advert-viewed", AutoRegActivity.token, "advertId=" + LRC.getAdvert().get(0).getId().toString()).get();
-                                                        } catch (ExecutionException e) {
-                                                            e.printStackTrace();
-                                                        } catch (InterruptedException e) {
-                                                            e.printStackTrace();
-                                                        }
-                                                        dialog.cancel();
-                                                        Bundle args = new Bundle();
-                                                        HomeFragment homeRecord = new HomeFragment();
-                                                        args.putString("token", AutoRegActivity.token);
-                                                        homeRecord.setArguments(args);
-                                                        LoadFragment(homeRecord);
-                                                    }
-                                                });
-                                        dialog.show();
+                                        Bundle args = new Bundle();
+                                        HomeFragment homeRecord = new HomeFragment();
+                                        args.putString("token", AutoRegActivity.token);
+                                        homeRecord.setArguments(args);
+                                        LoadFragment(homeRecord);
                                     }
-                                }else{
-                                    Bundle args = new Bundle();
-                                    HomeFragment homeRecord = new HomeFragment();
-                                    args.putString("token", AutoRegActivity.token);
-                                    homeRecord.setArguments(args);
-                                    LoadFragment(homeRecord);
                                 }
-                            }else{
-                                Bundle args = new Bundle();
-                                HomeFragment homeRecord = new HomeFragment();
-                                args.putString("token", AutoRegActivity.token);
-                                homeRecord.setArguments(args);
-                                LoadFragment(homeRecord);
+                            } catch (Exception e) {
+                                Toast.makeText(getActivity(), "Проверьте подключение к интернету!!!", Toast.LENGTH_SHORT).show();
                             }
                         }
-                    } catch (Exception e){
-                        Toast.makeText(getActivity(),"Проверьте подключение к интернету!!!",Toast.LENGTH_SHORT).show();
-                    }
+                    }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            }).create().show();
                 }
             }
         });

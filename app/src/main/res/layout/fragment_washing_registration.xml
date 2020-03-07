@@ -9,43 +9,75 @@
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp">
 
-    <TextView
+    <LinearLayout
         android:id="@+id/DataPick"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:autoLink="all"
-        android:clickable="false"
-        android:focusable="true"
-        android:fontFamily="@font/roboto"
-        android:singleLine="false"
-        android:text="Выберите дату"
-        android:textColor="@color/linkfadeonpress"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/Data"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/Data"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:focusable="true"
-        android:singleLine="false"
-        android:text="22.02.2019"
-        android:textColor="@color/linkfadeonpress"
-        android:textSize="18sp"
-        android:fontFamily="@font/roboto"
-        app:layout_constraintBottom_toTopOf="@+id/LLComplexPick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/DataPick"
-        app:layout_constraintTop_toBottomOf="@+id/DataPick" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:autoLink="all"
+                android:clickable="false"
+                android:focusable="true"
+                android:fontFamily="@font/roboto"
+                android:singleLine="false"
+                android:text="Выберите дату"
+                android:textColor="@color/linkfadeonpress"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/Data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/Data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:autoLink="all"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto"
+                android:singleLine="false"
+                android:text="22.02.2019"
+                android:textColor="@color/linkfadeonpress"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/ComplexPick"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/DataPick"
+                app:layout_constraintTop_toBottomOf="@+id/DataPick" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageButton
+                android:id="@+id/OtherAvtoMoyTV"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:backgroundTint="@color/projectOrange"
+                android:scaleType="fitXY"
+                android:layout_marginStart="100dp"
+                android:src="@drawable/map_spot"
+                app:itemIconTint="@drawable/bottom_record_colors"></ImageButton>
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/LLComplexPick"
@@ -55,7 +87,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Data"
+        app:layout_constraintTop_toBottomOf="@+id/DataPick"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/ComplexPick"
@@ -283,19 +315,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/OtherAvtoMoyTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="1"
-        android:clickable="true"
-        android:text="Выбрать другую автомойку >"
-        android:textAlignment="center"
-        android:textColor="@color/projectOrange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nextButtonMain" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

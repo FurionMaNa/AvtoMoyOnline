@@ -98,7 +98,6 @@ public class WashingRegistration1 extends Fragment {
             if (bundle != null) {
                 token = bundle.getString("token", "false");
             }
-
             AutoRegActivity.SelectServices = new ArrayList<Integer>();
             AutoRegActivity.SelectComplex = new ArrayList<Integer>();
             pricetv = view.findViewById(R.id.PriceTV);
@@ -106,7 +105,7 @@ public class WashingRegistration1 extends Fragment {
             fragment = view.findViewById(R.id.fragment_washing1);
             currentDateTime = view.findViewById(R.id.Data);
             String htmlTaggedString = "<u>" + HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y + "</u>";
-            TextView DataPicker = view.findViewById(R.id.DataPick);
+            TextView DataPicker = view.findViewById(R.id.Data);
             HomeFragment.y = String.valueOf(dateAndTime.get(Calendar.YEAR));
             HomeFragment.m = String.valueOf(dateAndTime.get(Calendar.MONTH) + 1);
             HomeFragment.dd = String.valueOf(dateAndTime.get(Calendar.DAY_OF_MONTH));
@@ -121,7 +120,6 @@ public class WashingRegistration1 extends Fragment {
             currentDateTime.setText(textSpan);
             pricetv.setText(" " + final_price.toString() + "\u20BD");
             timetv.setText(" ~ " + final_time.toString() + " минут");
-
             LoadCar();
             if(carsList.size()!=0) {
                 String str_answer;
