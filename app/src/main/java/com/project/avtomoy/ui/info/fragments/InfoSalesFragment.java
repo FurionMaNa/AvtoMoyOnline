@@ -34,8 +34,8 @@ public class InfoSalesFragment extends Fragment {
             token= bundle.getString("token", "false");
         }
         View view =inflater.inflate(R.layout.fragment_info_sales, container, false);
-        ((TextView)view.findViewById(R.id.nameAvtomoy)).setText(AutoRegActivity.loadAboutCarClass.getResponse().getName());
         try {
+            ((TextView)view.findViewById(R.id.nameAvtomoy)).setText(AutoRegActivity.loadAboutCarClass.getResponse().getName());
             /*String str_answer;
             try {
                 str_answer = new ThreadRequest().execute("carwash-sales-page", token, "carWashId=" + AutoRegActivity.carWashId).get();
