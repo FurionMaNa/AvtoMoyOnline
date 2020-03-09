@@ -53,16 +53,22 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <ImageButton
-                        android:id="@+id/OtherAvtoMoyTV"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="right"
-                        android:backgroundTint="@color/projectOrange"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/map_spot"
-                        app:itemIconTint="@drawable/bottom_record_colors"></ImageButton>
+                        <ImageButton
+                            android:id="@+id/OtherAvtoMoyTV"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="right"
+                            android:backgroundTint="@color/projectOrange"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/map_spot"
+                            app:itemIconTint="@drawable/bottom_record_colors"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -92,9 +98,11 @@
 
                     <Spinner
                         android:id="@+id/IntervalStart"
-                        android:layout_width="160dp"
+                        android:background="@drawable/spinner_draw"
+                        android:layout_width="130dp"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"></Spinner>
+                        android:layout_marginTop="10dp"
+                        style="?android:attr/spinnerItemStyle" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -110,9 +118,11 @@
 
                     <Spinner
                         android:id="@+id/TimeRecord"
-                        android:layout_width="160dp"
+                        android:background="@drawable/spinner_draw"
+                        android:layout_width="90dp"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        style="@style/Widget.AppCompat.DropDownItem.Spinner"/>
 
                 </LinearLayout>
             </LinearLayout>

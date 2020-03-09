@@ -34,8 +34,8 @@ public class WashingRegistration2Other extends Fragment {
     private String price;
     private PeriodsClass periods;
     private ArrayList<String>per;
-    private ArrayList<String>start;
-    private ArrayList<String> avaible;
+    private ArrayList<String>start=new ArrayList<>();
+    private ArrayList<String> avaible=new ArrayList<>();
     private Integer startInterval;
     private Integer timeRecord;
     private Spinner spinner;
@@ -59,7 +59,11 @@ public class WashingRegistration2Other extends Fragment {
             try {
                 str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + date + "&carWashId=" + AutoRegActivity.carWashId).get();
                 periods = deserializePeriodsResult(str_answer);
-                start = periods.getResponse().getDates();
+                //if(periods!=null) {
+                //  for(int i=0;i<periods.getResponse().getDates().size();i++) {
+                start=periods.getResponse().getDates();//.add(String.valueOf(Character.toString(periods.getResponse().getDates().get(i).charAt(0))+Character.toString(periods.getResponse().getDates().get(i).charAt(1))+Character.toString(periods.getResponse().getDates().get(i).charAt(2))+Character.toString(periods.getResponse().getDates().get(i).charAt(3))+Character.toString(periods.getResponse().getDates().get(i).charAt(4))));
+                //    }
+                //}
                 spinner = (Spinner) view.findViewById(R.id.TimeRecord);
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, start);
                 adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -78,7 +82,11 @@ public class WashingRegistration2Other extends Fragment {
                                 str_answer = new ThreadRequest().execute("get-avaible-times", token, "date=" + date + "&duration=" + duration + "&timeInterval=" + start.get(position) + "&nextInterval=" + start.get(position + 1)).get();
                             }
                             pr = deserializeAvaibleResult(str_answer);
-                            avaible = pr.getResponse().getTimes();
+                            if(pr!=null) {
+                                for(int i=0;i<periods.getResponse().getDates().size();i++) {
+                                    avaible.add(String.valueOf(Character.toString( pr.getResponse().getTimes().get(i).charAt(0))+Character.toString( pr.getResponse().getTimes().get(i).charAt(1))+Character.toString( pr.getResponse().getTimes().get(i).charAt(2))+Character.toString( pr.getResponse().getTimes().get(i).charAt(3))+Character.toString( pr.getResponse().getTimes().get(i).charAt(4))));
+                                }
+                            }
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, avaible);
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner.setAdapter(adapter);
