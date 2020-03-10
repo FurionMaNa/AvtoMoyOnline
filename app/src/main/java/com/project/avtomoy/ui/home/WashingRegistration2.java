@@ -41,6 +41,7 @@ public class WashingRegistration2 extends Fragment {
     private Integer timeRecord;
     private Spinner spinner;
     private EditText comment;
+    LoadGetAvaibleTimes pr;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         Bundle bundle = this.getArguments();
@@ -61,11 +62,11 @@ public class WashingRegistration2 extends Fragment {
                 periods = null;
                 str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + date + "&carWashId=" + AutoRegActivity.carWashId).get();
                 periods = deserializePeriodsResult(str_answer);
-                //if(periods!=null) {
+                if(periods!=null) {
                   //  for(int i=0;i<periods.getResponse().getDates().size();i++) {
                         start=periods.getResponse().getDates();//.add(String.valueOf(Character.toString(periods.getResponse().getDates().get(i).charAt(0))+Character.toString(periods.getResponse().getDates().get(i).charAt(1))+Character.toString(periods.getResponse().getDates().get(i).charAt(2))+Character.toString(periods.getResponse().getDates().get(i).charAt(3))+Character.toString(periods.getResponse().getDates().get(i).charAt(4))));
                 //    }
-                //}
+                }
                 spinner = (Spinner) view.findViewById(R.id.TimeRecord);
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, start);
                 adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -76,7 +77,6 @@ public class WashingRegistration2 extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         try {
                             startInterval = position;
-                            LoadGetAvaibleTimes pr;
                             String str_answer = "";
                             if (position == start.size() - 1) {
                                 str_answer = new ThreadRequest().execute("get-avaible-times", token, "date=" + date + "&duration=" + duration + "&timeInterval=" + periods.getResponse().getDates().get(position) + "&nextInterval=" + start.get(0)).get();
@@ -85,8 +85,9 @@ public class WashingRegistration2 extends Fragment {
                             }
                             pr = deserializeAvaibleResult(str_answer);
                             if(pr!=null) {
+                                avaible=new ArrayList<>();
                                 for(int i=0;i<periods.getResponse().getDates().size();i++) {
-                                    avaible.add(String.valueOf(Character.toString( pr.getResponse().getTimes().get(i).charAt(0))+Character.toString( pr.getResponse().getTimes().get(i).charAt(1))+Character.toString( pr.getResponse().getTimes().get(i).charAt(2))+Character.toString( pr.getResponse().getTimes().get(i).charAt(3))+Character.toString( pr.getResponse().getTimes().get(i).charAt(4))));
+                                    avaible.add(Character.toString( pr.getResponse().getTimes().get(i).charAt(0))+Character.toString( pr.getResponse().getTimes().get(i).charAt(1))+Character.toString( pr.getResponse().getTimes().get(i).charAt(2))+Character.toString( pr.getResponse().getTimes().get(i).charAt(3))+Character.toString( pr.getResponse().getTimes().get(i).charAt(4)));
                                 }
                             }
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, avaible);
@@ -166,7 +167,7 @@ public class WashingRegistration2 extends Fragment {
                     Integer etC = Integer.parseInt(String.valueOf(st.charAt(8)) + String.valueOf(st.charAt(9)));
                     Integer etM = Integer.parseInt(String.valueOf(st.charAt(11)) + String.valueOf(st.charAt(12)));
                     strRequest += "timeInterval=" + (stC * 60 + stM) + "," + (etC * 60 + etM) + "&";
-                    st = avaible.get(timeRecord);
+                    st = pr.getResponse().getTimes().get(timeRecord);
                     stC = Integer.parseInt(String.valueOf(st.charAt(0)) + String.valueOf(st.charAt(1)));
                     stM = Integer.parseInt(String.valueOf(st.charAt(3)) + String.valueOf(st.charAt(4)));
                     etC = Integer.parseInt(String.valueOf(st.charAt(8)) + String.valueOf(st.charAt(9)));
