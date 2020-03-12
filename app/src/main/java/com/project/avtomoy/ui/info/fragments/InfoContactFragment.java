@@ -3,6 +3,7 @@ package com.project.avtomoy.ui.info.fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -96,7 +97,12 @@ public class InfoContactFragment extends Fragment {
             tvAddress.setText(AutoRegActivity.loadAboutCarClass.getResponse().getAddress());
             try {
                 if (AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getType() == 2) {
-                    tvSite.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                    Log.i("My",AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue().substring(0,7));
+                    if(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue().substring(0,8).equals("https://")) {
+                        tvSite.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue().substring(8));
+                    }else{
+                        tvSite.setText(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
+                    }
                     tvSite.setTag(AutoRegActivity.loadAboutCarClass.getResponse().getContacts().get(i).getValue());
                     tvSite.setOnClickListener(new View.OnClickListener() {
                         @Override

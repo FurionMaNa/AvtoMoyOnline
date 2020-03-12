@@ -41,9 +41,11 @@
             android:label="@string/title_activity_auto_reg"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             android:largeHeap="true"
-            android:supportsRtl="true" />
+            android:supportsRtl="true"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"/>
         <activity
             android:name=".RegistryActivity"
             android:screenOrientation="portrait" />

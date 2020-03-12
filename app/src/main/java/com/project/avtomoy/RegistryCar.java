@@ -2,6 +2,8 @@ package com.project.avtomoy;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -54,6 +56,18 @@ public class RegistryCar extends DialogFragment {
                 new ArrayAdapter<>(getContext(),R.layout.support_simple_spinner_dropdown_item,items);
         spinner.setAdapter(adapter);
         editTextCarNumber= dialog.findViewById(R.id.editTextCarNumber);
+        InputFilter customFilter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if(((source.charAt(i)>='a')&&(source.charAt(i)<'z'))||((source.charAt(i)>='A')&&(source.charAt(i)<'Z'))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        editTextCarNumber.setFilters(new InputFilter[]{ customFilter});
         setupPrefixSample(editTextCarNumber);
         Button addCarButton = dialog.findViewById(R.id.saveCarButton);
         addCarButton.setOnClickListener(new View.OnClickListener() {

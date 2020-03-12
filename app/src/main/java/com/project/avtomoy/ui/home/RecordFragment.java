@@ -1,11 +1,13 @@
 package com.project.avtomoy.ui.home;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +40,13 @@ public class RecordFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_record, container, false);
+
+        View v =getActivity().getCurrentFocus();
+        if(v!=null) {
+            v.clearFocus();
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
         int time_start = AutoRegActivity.GSRL.getResponse().getTime_start();
         String hours_start = String.valueOf(time_start / 60);
         String minutes_start = String.valueOf(time_start % 60);
@@ -47,6 +56,9 @@ public class RecordFragment extends Fragment {
         if(hours_start.length()==1){
             hours_start="0"+hours_start;
         }
+        Integer longWash=Math.abs(AutoRegActivity.GSRL.getResponse().getTime_start()-AutoRegActivity.GSRL.getResponse().getTime_end());
+        ((TextView)view.findViewById(R.id.PriceTV)).setText(AutoRegActivity.GSRL.getResponse().getPrice().toString()+" Р");
+        ((TextView)view.findViewById(R.id.TimeTV)).setText("~"+longWash.toString()+" минут");
         TextView time_date=view.findViewById(R.id.time);
         TextView carnum=view.findViewById(R.id.car);
         carnum.setText(AutoRegActivity.GSRL.getResponse().getCar_number());

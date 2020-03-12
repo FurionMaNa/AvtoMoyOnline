@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.project.avtomoy.R;
 import com.project.avtomoy.AutoRegActivity;
 import com.project.avtomoy.LoadChangeSettingClass;
+import com.project.avtomoy.SettingsPageClass;
 import com.project.avtomoy.ThreadRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -40,15 +41,20 @@ public class ToolProfileFragment extends Fragment {
                 token = bundle.getString("token", "false");
             }
             editTextPhoneNumber = view.findViewById(R.id.editTextPhoneNumber);
-            setupPrefixSample(editTextPhoneNumber);
             EditText editTextMail = view.findViewById(R.id.editTextRegion1);
             editTextMail.setText(AutoRegActivity.login);
+            setupPrefixSample(editTextPhoneNumber);
             editTextPhoneNumber.setFilters(new InputFilter[]{new InputFilter() {
                 @Override
                 public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                     return null;
                 }
             }});
+
+            String str_answer = new ThreadRequest().execute("settings-page", token).get();
+            SettingsPageClass settingsPageClass=deserializeSettings(str_answer);
+            editTextPhoneNumber.setText(settingsPageClass.getResponse().getSettings().getPhone().substring(1));
+            editTextMail.setText(settingsPageClass.getResponse().getSettings().getEmail());
 
             final Button saveContactsButton = (Button) view.findViewById(R.id.saveCarButton);
             saveContactsButton.setOnClickListener(new BottomNavigationView.OnClickListener() {
@@ -86,7 +92,7 @@ public class ToolProfileFragment extends Fragment {
 
         final MaskedTextChangedListener listener = MaskedTextChangedListener.Companion.installOn(
                 editText,
-                "+7 ([000]) [000] [00] [00",
+                "+7 ([000]) [000] [00] [00]",
                 affineFormats,
                 AffinityCalculationStrategy.PREFIX,
                 new MaskedTextChangedListener.ValueListener() {
@@ -98,6 +104,15 @@ public class ToolProfileFragment extends Fragment {
 
     }
 
+    private SettingsPageClass deserializeSettings(String JSonString)  {
+        Gson gson =new Gson();
+        try {
+            return gson.fromJson(JSonString,SettingsPageClass.class);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
 
     private LoadChangeSettingClass deserializeChangeResult(String JSonString)  {
         Gson gson =new Gson();

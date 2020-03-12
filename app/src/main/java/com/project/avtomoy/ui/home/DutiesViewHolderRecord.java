@@ -9,8 +9,11 @@ import android.widget.TextView;
 import com.project.avtomoy.R;
 import com.project.avtomoy.AutoRegActivity;
 import com.project.avtomoy.ServicesClass;
+import com.project.avtomoy.ThreadRequest;
 import com.project.avtomoy.TimeAndPriceClass;
 import com.google.gson.Gson;
+
+import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -40,7 +43,7 @@ public class DutiesViewHolderRecord extends RecyclerView.ViewHolder {
         String str_answer;
         TimeAndPriceClass service = null;
         TimeAndPriceClass tp;
-        /*try {
+        try {
             str_answer = new ThreadRequest().execute("get-time-and-price", HomeFragment.token,duty.getId().toString()).get();
             Log.i("MyLog",duty.getId().toString());
             service = deserializeTimeAndPriceResult(str_answer);
@@ -49,12 +52,10 @@ public class DutiesViewHolderRecord extends RecyclerView.ViewHolder {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        nameText.setText(duty.getName());
         priceText.setText(service.getResponse().getPrice().getServices().getPrice().toString());
-        SC=new ComplexSelect(duty,"false");
+        /*SC=new ComplexSelect(duty,"false");
         CL.setTag(SC);*/
         nameText.setText(duty.getName());
-        priceText.setText("10");
         moreText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

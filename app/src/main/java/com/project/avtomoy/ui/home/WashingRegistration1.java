@@ -3,6 +3,7 @@ package com.project.avtomoy.ui.home;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -76,7 +78,12 @@ public class WashingRegistration1 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_washing_registration, container, false);
-
+        View v =getActivity().getCurrentFocus();
+        if(v!=null) {
+            v.clearFocus();
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
         GLSelect = view.findViewById(R.id.SelectComplexGV);
         GLSelectServices = view.findViewById(R.id.SelectServicesGV);
         LLSelectComplex=view.findViewById(R.id.SelectComplex);

@@ -1,10 +1,12 @@
 package com.project.avtomoy.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -46,6 +48,12 @@ public class WashingRegistration2 extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         Bundle bundle = this.getArguments();
         View view = inflater.inflate(R.layout.fragment_washing_registration_part2, container, false);
+        View v =getActivity().getCurrentFocus();
+        if(v!=null) {
+            v.clearFocus();
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
         try {
             if (bundle != null) {
                 token = bundle.getString("token", "false");
