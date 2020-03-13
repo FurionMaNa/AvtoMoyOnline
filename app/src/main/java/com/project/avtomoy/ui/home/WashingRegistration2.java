@@ -68,7 +68,8 @@ public class WashingRegistration2 extends Fragment {
             final String str_answer;
             try {
                 periods = null;
-                str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + date + "&carWashId=" + AutoRegActivity.carWashId).get();
+                str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + date + "&carWashId=" + AutoRegActivity.carWashId+"&duration="+duration).get();
+                Log.i("My",duration.toString());
                 periods = deserializePeriodsResult(str_answer);
                 if(periods!=null) {
                   //  for(int i=0;i<periods.getResponse().getDates().size();i++) {

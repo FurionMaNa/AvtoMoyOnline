@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -258,7 +259,8 @@ public class WashingRegistration1 extends Fragment {
                     String str_answer;
                     PeriodsClass periods = null;
                     try {
-                        str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y + "&carWashId=" + AutoRegActivity.carWashId).get();
+                        str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y + "&carWashId=" + AutoRegActivity.carWashId+"&duration="+service_time_price.getResponse().getFormatTime().getApproximateMinutes()).get();
+                        Log.i("My",service_time_price.getResponse().getFormatTime().getApproximateMinutes().toString());
                         periods = deserializePeriodsResult(str_answer);
                         if (periods == null) {
                             Toast.makeText(getActivity(), "Выбери другую дату или другую автомойку", Toast.LENGTH_SHORT).show();
