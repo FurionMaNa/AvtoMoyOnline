@@ -95,7 +95,7 @@ public class WashingRegistration2 extends Fragment {
                             pr = deserializeAvaibleResult(str_answer);
                             if(pr!=null) {
                                 avaible=new ArrayList<>();
-                                for(int i=0;i<periods.getResponse().getDates().size();i++) {
+                                for(int i=0;i<pr.getResponse().getTimes().size();i++) {
                                     avaible.add(Character.toString( pr.getResponse().getTimes().get(i).charAt(0))+Character.toString( pr.getResponse().getTimes().get(i).charAt(1))+Character.toString( pr.getResponse().getTimes().get(i).charAt(2))+Character.toString( pr.getResponse().getTimes().get(i).charAt(3))+Character.toString( pr.getResponse().getTimes().get(i).charAt(4)));
                                 }
                             }

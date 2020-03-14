@@ -58,7 +58,7 @@ public class WashingRegistration2Other extends Fragment {
             }
             final String str_answer;
             try {
-                str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + date + "&carWashId=" + AutoRegActivity.carWashId).get();
+                str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + date + "&carWashId=" + AutoRegActivity.carWashId+"&duration="+duration).get();
                 periods = deserializePeriodsResult(str_answer);
                 if(periods!=null) {
                 //  for(int i=0;i<periods.getResponse().getDates().size();i++) {
@@ -77,14 +77,14 @@ public class WashingRegistration2Other extends Fragment {
                             startInterval = position;
                             String str_answer;
                             if (position == start.size() - 1) {
-                                str_answer = new ThreadRequest().execute("get-avaible-times", token, "date=" + date + "&duration=" + duration + "&timeInterval=" + start.get(position) + "&nextInterval=" + start.get(0)).get();
+                                str_answer = new ThreadRequest().execute("get-avaible-times", token, "carWashId=" + AutoRegActivity.carWashId+"&date=" + date + "&duration=" + duration + "&timeInterval=" + start.get(position) + "&nextInterval=" + start.get(0)).get();
                             } else {
-                                str_answer = new ThreadRequest().execute("get-avaible-times", token, "date=" + date + "&duration=" + duration + "&timeInterval=" + start.get(position) + "&nextInterval=" + start.get(position + 1)).get();
+                                str_answer = new ThreadRequest().execute("get-avaible-times", token, "carWashId=" + AutoRegActivity.carWashId+"&date=" + date + "&duration=" + duration + "&timeInterval=" + start.get(position) + "&nextInterval=" + start.get(position + 1)).get();
                             }
                             pr = deserializeAvaibleResult(str_answer);
                             if(pr!=null) {
                                 avaible=new ArrayList<>();
-                                for(int i=0;i<periods.getResponse().getDates().size();i++) {
+                                for(int i=0;i<pr.getResponse().getTimes().size();i++) {
                                     avaible.add(Character.toString( pr.getResponse().getTimes().get(i).charAt(0))+Character.toString( pr.getResponse().getTimes().get(i).charAt(1))+Character.toString( pr.getResponse().getTimes().get(i).charAt(2))+Character.toString( pr.getResponse().getTimes().get(i).charAt(3))+Character.toString( pr.getResponse().getTimes().get(i).charAt(4)));
                                 }
                             }

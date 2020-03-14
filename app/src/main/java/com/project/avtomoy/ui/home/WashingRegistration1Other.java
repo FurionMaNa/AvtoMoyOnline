@@ -239,7 +239,7 @@ public class WashingRegistration1Other extends Fragment {
                     String str_answer;
                     PeriodsClass periods = null;
                     try {
-                        str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y + "&carWashId=" + AutoRegActivity.carWashId).get();
+                        str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y + "&carWashId=" + AutoRegActivity.carWashId+"&duration="+service_time_price.getResponse().getFormatTime().getApproximateMinutes()).get();
                         periods = deserializePeriodsResult(str_answer);
                         if (periods == null) {
                             Toast.makeText(getActivity(), "Выбери другую дату или другую автомойку", Toast.LENGTH_SHORT).show();
