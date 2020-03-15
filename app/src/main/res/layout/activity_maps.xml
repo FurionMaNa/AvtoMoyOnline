@@ -47,7 +47,7 @@
         android:src="@drawable/setting"
         android:clickable="true"
         android:background="@drawable/round_button"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/gray"
         android:layout_marginBottom="40dp"
         android:layout_marginRight="8dp"
         android:id="@+id/filter"></ImageButton>
@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="visible"
         map:layout_constraintBottom_toBottomOf="@+id/map"
         tools:ignore="MissingConstraints"
         android:background="#FFF"

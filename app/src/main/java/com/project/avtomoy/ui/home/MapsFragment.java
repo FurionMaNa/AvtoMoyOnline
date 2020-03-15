@@ -14,10 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.project.avtomoy.NoFilterMapsClass;
 import com.project.avtomoy.R;
 import com.project.avtomoy.AutoRegActivity;
 import com.project.avtomoy.LoadCarWashesClass;
 import com.project.avtomoy.PeriodsClass;
+import com.project.avtomoy.ResponseNoFilterClass;
 import com.project.avtomoy.ThreadRequest;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -48,6 +51,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private Integer intervalFilter=0;
     private Integer durationFilter=0;
     private static LoadCarWashesClass LCWC;
+    private static NoFilterMapsClass RNFC;
     ArrayList<Float> duration=new ArrayList<Float>();
     ArrayList<String> durationStr=new ArrayList<String>();
     private String other;
@@ -94,18 +98,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 price = bundle.getString("price", "false");
             }
             LLSetting = view.findViewById(R.id.LLSetting);
-            view.findViewById(R.id.filter).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (LLSetting.getVisibility() == View.VISIBLE) {
-                        v.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(255, 102, 52)));
-                        LLSetting.setVisibility(View.INVISIBLE);
-                    } else {
-                        v.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(143, 143, 143)));
-                        LLSetting.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
             final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map);
             String str_answer;
@@ -142,6 +134,30 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            view.findViewById(R.id.filter).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (LLSetting.getVisibility() == View.VISIBLE) {
+                        v.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(255, 102, 52)));
+                        LLSetting.setVisibility(View.INVISIBLE);
+                        String str;
+                        try {
+                            str = new ThreadRequest().execute("get-car-washes-list", token).get();
+                            RNFC = deserializeNoFilterResult(str);
+                            Log.i("MyLog", "get-car-washes-list");
+                            LCWC=null;
+                            mapFragment.getMapAsync(MapsFragment.this);
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        v.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(143, 143, 143)));
+                        LLSetting.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
             ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, durationStr);
             adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner spinner = (Spinner) view.findViewById(R.id.TimeRecord);
@@ -238,6 +254,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map=googleMap;
+        map.clear();
         if(LCWC!=null) {
             for(int i=0;i<LCWC.getResponse().getCarWashes().size();i++) {
                 map.addMarker(new MarkerOptions().position(new LatLng(LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(0), LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(1))).title(LCWC.getResponse().getCarWashes().get(i).getProperties().getBalloonContentHeader())).setTag(i);
@@ -283,6 +300,54 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 });
 
             }
+        }else{
+            if(RNFC!=null) {
+                for(int i=0;i<RNFC.getResponse().size();i++) {
+                    if(RNFC.getResponse().get(i).getGeometry().getCoordinates()!=null) {
+                        map.addMarker(new MarkerOptions().position(new LatLng(RNFC.getResponse().get(i).getGeometry().getCoordinates().get(0), RNFC.getResponse().get(i).getGeometry().getCoordinates().get(1))).title(RNFC.getResponse().get(i).getName())).setTag(i);
+                        CameraPosition cameraPosition = new CameraPosition.Builder()
+                                .target(new LatLng(RNFC.getResponse().get(i).getGeometry().getCoordinates().get(0), RNFC.getResponse().get(i).getGeometry().getCoordinates().get(1)))
+                                .zoom(12)
+                                .build();
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+                        map.animateCamera(cameraUpdate);
+                        final int finalI = i;
+                        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                            @Override
+                            public boolean onMarkerClick(final Marker marker) {
+
+                                ad = new AlertDialog.Builder(getContext());
+                                ad.setTitle(RNFC.getResponse().get(Integer.parseInt(marker.getTag().toString())).getName());  // заголовок
+                                ad.setMessage(RNFC.getResponse().get(Integer.parseInt(marker.getTag().toString())).getAddress()); // сообщение
+                                ad.setPositiveButton("Выбрать", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int arg1) {
+                                        AutoRegActivity.carWashId = RNFC.getResponse().get(Integer.parseInt(marker.getTag().toString())).getId();
+                                        AutoRegActivity.myWash = false;
+                                        WashingRegistration1Other fragmentWashingReg;
+                                        fragmentWashingReg = new WashingRegistration1Other();
+                                        Bundle args = new Bundle();
+                                        args.putString("token", token);
+                                        fragmentWashingReg.setArguments(args);
+                                        LoadFragment(fragmentWashingReg, 0);
+                                    }
+                                });
+                                ad.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int arg1) {
+                                        ad = null;
+                                    }
+                                });
+                                ad.setCancelable(true);
+                                ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                    public void onCancel(DialogInterface dialog) {
+                                    }
+                                });
+                                ad.show();
+                                return false;
+                            }
+                        });
+                    }
+                }
+            }
         }
     }
 
@@ -309,6 +374,16 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         Gson gson =new Gson();
         try {
             return gson.fromJson(JSonString,LoadCarWashesClass.class);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    private static NoFilterMapsClass deserializeNoFilterResult(String JSonString)  {
+        Gson gson =new Gson();
+        try {
+            return gson.fromJson(JSonString,NoFilterMapsClass.class);
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
