@@ -55,7 +55,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     ArrayList<Float> duration=new ArrayList<Float>();
     ArrayList<String> durationStr=new ArrayList<String>();
     private String other;
-
+    Spinner spinner2;
     private String date;
     private Integer durations;
     private Integer minute;
@@ -107,7 +107,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 start = periods.getResponse().getDates();
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, start);
                 adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                Spinner spinner2 = (Spinner) view.findViewById(R.id.IntervalStart);
+                spinner2 = (Spinner) view.findViewById(R.id.IntervalStart);
                 spinner2.setAdapter(adapter2);
                 spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -154,6 +154,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                         }
                     } else {
                         v.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(143, 143, 143)));
+                        spinner2.setAdapter(spinner2.getAdapter());
                         LLSetting.setVisibility(View.VISIBLE);
                     }
                 }

@@ -8,8 +8,8 @@ android {
         vectorDrawables.useSupportLibrary = true
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 40
-        versionName "2.40"
+        versionCode 41
+        versionName "2.41"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "AvtoMoy"
     }
