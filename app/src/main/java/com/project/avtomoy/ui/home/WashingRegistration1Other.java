@@ -346,6 +346,7 @@ public class WashingRegistration1Other extends Fragment {
                     MapsFragment mapsFragment = new MapsFragment();
                     Bundle args = new Bundle();
                     args.putString("token", token);
+                    args.putString("date", HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y);
                     args.putString("Other", "trueT");
                     mapsFragment.setArguments(args);
                     LoadFragment(mapsFragment);

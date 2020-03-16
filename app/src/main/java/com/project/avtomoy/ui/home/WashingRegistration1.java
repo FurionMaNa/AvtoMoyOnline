@@ -197,17 +197,7 @@ public class WashingRegistration1 extends Fragment {
             addedServiceView.setLayoutManager(layoutManager2);
             hisAdapter2 = new ServiceAdapter(HomeFragment.ser, AutoRegActivity.SelectServices);
             addedServiceView.setAdapter(hisAdapter2);
-            view.findViewById(R.id.OtherAvtoMoyTV).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MapsFragment mapsFragment = new MapsFragment();
-                    Bundle args = new Bundle();
-                    args.putString("token", token);
-                    args.putString("Other", "trueK");
-                    mapsFragment.setArguments(args);
-                    LoadFragment(mapsFragment);
-                }
-            });
+
             fragmentWashingReg = new WashingRegistration2();
             ((TextView) view.findViewById(R.id.AllComplex)).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -285,6 +275,18 @@ public class WashingRegistration1 extends Fragment {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                }
+            });
+            view.findViewById(R.id.OtherAvtoMoyTV).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MapsFragment mapsFragment = new MapsFragment();
+                    Bundle args = new Bundle();
+                    args.putString("token", token);
+                    args.putString("date", HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y);
+                    args.putString("Other", "trueK");
+                    mapsFragment.setArguments(args);
+                    LoadFragment(mapsFragment);
                 }
             });
             htmlTaggedString = "<u>" + HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y + "</u>";
