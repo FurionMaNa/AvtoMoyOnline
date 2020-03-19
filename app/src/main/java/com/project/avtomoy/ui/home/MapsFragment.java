@@ -258,53 +258,55 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         map.clear();
         if(LCWC!=null) {
             for(int i=0;i<LCWC.getResponse().getCarWashes().size();i++) {
-                map.addMarker(new MarkerOptions().position(new LatLng(LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(0), LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(1))).title(LCWC.getResponse().getCarWashes().get(i).getProperties().getBalloonContentHeader())).setTag(i);
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(new LatLng(LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(0), LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(1)))
-                        .zoom(12)
-                        .build();
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-                map.animateCamera(cameraUpdate);
-                final int finalI = i;
-                map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(final Marker marker) {
+                if(!LCWC.getResponse().getCarWashes().get(i).getId().equals(AutoRegActivity.carWashId)) {
+                    map.addMarker(new MarkerOptions().position(new LatLng(LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(0), LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(1))).title(LCWC.getResponse().getCarWashes().get(i).getProperties().getBalloonContentHeader())).setTag(i);
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(new LatLng(LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(0), LCWC.getResponse().getCarWashes().get(i).getGeometry().getCoordinates().get(1)))
+                            .zoom(12)
+                            .build();
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+                    map.animateCamera(cameraUpdate);
+                    final int finalI = i;
+                    map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(final Marker marker) {
 
-                        ad = new AlertDialog.Builder(getContext());
-                        ad.setTitle(LCWC.getResponse().getCarWashes().get(Integer.parseInt(marker.getTag().toString())).getProperties().getBalloonContentHeader());  // заголовок
-                        ad.setMessage(LCWC.getResponse().getCarWashes().get(Integer.parseInt(marker.getTag().toString())).getProperties().getBalloonContentBody()); // сообщение
-                        ad.setPositiveButton("Выбрать", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int arg1) {
-                                AutoRegActivity.carWashId=LCWC.getResponse().getCarWashes().get(Integer.parseInt(marker.getTag().toString())).getId();
-                                AutoRegActivity.myWash=false;
-                                WashingRegistration1Other fragmentWashingReg;
-                                fragmentWashingReg=new WashingRegistration1Other();
-                                Bundle args = new Bundle();
-                                args.putString("token", token);
-                                fragmentWashingReg.setArguments(args);
-                                LoadFragment(fragmentWashingReg,0);
-                            }
-                        });
-                        ad.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int arg1) {
-                                ad=null;
-                            }
-                        });
-                        ad.setCancelable(true);
-                        ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                            public void onCancel(DialogInterface dialog) {
-                            }
-                        });
-                        ad.show();
-                        return false;
-                    }
-                });
+                            ad = new AlertDialog.Builder(getContext());
+                            ad.setTitle(LCWC.getResponse().getCarWashes().get(Integer.parseInt(marker.getTag().toString())).getProperties().getBalloonContentHeader());  // заголовок
+                            ad.setMessage(LCWC.getResponse().getCarWashes().get(Integer.parseInt(marker.getTag().toString())).getProperties().getBalloonContentBody()); // сообщение
+                            ad.setPositiveButton("Выбрать", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int arg1) {
+                                    AutoRegActivity.carWashId = LCWC.getResponse().getCarWashes().get(Integer.parseInt(marker.getTag().toString())).getId();
+                                    AutoRegActivity.myWash = false;
+                                    WashingRegistration1Other fragmentWashingReg;
+                                    fragmentWashingReg = new WashingRegistration1Other();
+                                    Bundle args = new Bundle();
+                                    args.putString("token", token);
+                                    fragmentWashingReg.setArguments(args);
+                                    LoadFragment(fragmentWashingReg, 0);
+                                }
+                            });
+                            ad.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int arg1) {
+                                    ad = null;
+                                }
+                            });
+                            ad.setCancelable(true);
+                            ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                public void onCancel(DialogInterface dialog) {
+                                }
+                            });
+                            ad.show();
+                            return false;
+                        }
+                    });
+                }
 
             }
         }else{
             if(RNFC!=null) {
                 for(int i=0;i<RNFC.getResponse().size();i++) {
-                    if(RNFC.getResponse().get(i).getGeometry().getCoordinates()!=null) {
+                    if((RNFC.getResponse().get(i).getGeometry().getCoordinates()!=null)&&(!RNFC.getResponse().get(i).getId().equals(AutoRegActivity.carWashId))) {
                         map.addMarker(new MarkerOptions().position(new LatLng(RNFC.getResponse().get(i).getGeometry().getCoordinates().get(0), RNFC.getResponse().get(i).getGeometry().getCoordinates().get(1))).title(RNFC.getResponse().get(i).getName())).setTag(i);
                         CameraPosition cameraPosition = new CameraPosition.Builder()
                                 .target(new LatLng(RNFC.getResponse().get(i).getGeometry().getCoordinates().get(0), RNFC.getResponse().get(i).getGeometry().getCoordinates().get(1)))

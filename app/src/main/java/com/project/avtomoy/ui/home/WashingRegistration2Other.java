@@ -119,22 +119,22 @@ public class WashingRegistration2Other extends Fragment {
             }
 
 
-            view.findViewById(R.id.OtherAvtoMoyTV).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MapsFragment mapsFragment = new MapsFragment();
-                    Bundle args = new Bundle();
-                    args.putString("token", token);
-                    args.putString("Other", "true");
-                    args.putString("date", HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y);
-                    args.putInt("duration", duration);
-                    args.putInt("minute", minute);
-                    args.putString("minuteStr", minuteStr);
-                    args.putString("price", price);
-                    mapsFragment.setArguments(args);
-                    LoadFragment(mapsFragment);
-                }
-            });
+            //view.findViewById(R.id.OtherAvtoMoyTV).setOnClickListener(new View.OnClickListener() {
+            //    @Override
+            //    public void onClick(View v) {
+            //        MapsFragment mapsFragment = new MapsFragment();
+            //        Bundle args = new Bundle();
+            //        args.putString("token", token);
+            //        args.putString("Other", "true");
+            //        args.putString("date", HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y);
+            //        args.putInt("duration", duration);
+            //        args.putInt("minute", minute);
+            //        args.putString("minuteStr", minuteStr);
+            //        args.putString("price", price);
+            //        mapsFragment.setArguments(args);
+            //        LoadFragment(mapsFragment);
+            //    }
+            //});
             view.findViewById(R.id.imageButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -229,6 +229,7 @@ public class WashingRegistration2Other extends Fragment {
                 }
             });
         }catch (Exception e){
+            e.printStackTrace();
             Toast.makeText(AutoRegActivity.context,"Проверьте подключение к интернету!!!",Toast.LENGTH_SHORT).show();
         }
         return view;

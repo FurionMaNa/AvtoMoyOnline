@@ -9,264 +9,249 @@
     android:layout_marginEnd="8dp">
 
 
-    <LinearLayout
-        android:id="@+id/DataPick"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="#FAFAFA"
-                android:clickable="true"
-                android:src="@drawable/back"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:id="@+id/DataPick"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/infoBtnOther"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="2dp"
-                    android:backgroundTint="@color/projectOrange"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/info"
-                    app:itemIconTint="@drawable/bottom_record_colors"
-                    app:layout_constraintEnd_toStartOf="@+id/MyWashBtnOther"
-                    app:layout_constraintTop_toTopOf="parent"></ImageButton>
-
-                <ImageButton
-                    android:id="@+id/MyWashBtnOther"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="2dp"
-                    android:backgroundTint="@color/projectOrange"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/carwash"
-                    app:itemIconTint="@drawable/bottom_record_colors"
-                    app:layout_constraintEnd_toStartOf="@+id/mapBtnOther"
-                    app:layout_constraintTop_toTopOf="parent"></ImageButton>
-
-                <ImageButton
-                    android:id="@+id/mapBtnOther"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:backgroundTint="@color/projectOrange"
-                    android:scaleType="fitXY"
-                    android:layout_marginStart="2dp"
-                    android:src="@drawable/map_spot"
-                    app:itemIconTint="@drawable/bottom_record_colors"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></ImageButton>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DataPick">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="Интервал начала"></TextView>
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <Spinner
-                android:id="@+id/IntervalStart"
-                android:background="@drawable/spinner_draw"
-                android:layout_width="130dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="#FAFAFA"
+                        android:clickable="true"
+                        android:src="@drawable/back"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/infoBtnOther"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="2dp"
+                            android:backgroundTint="@color/projectOrange"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/info"
+                            app:itemIconTint="@drawable/bottom_record_colors"
+                            app:layout_constraintEnd_toStartOf="@+id/MyWashBtnOther"
+                            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+                        <ImageButton
+                            android:id="@+id/MyWashBtnOther"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="2dp"
+                            android:backgroundTint="@color/projectOrange"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/carwash"
+                            app:itemIconTint="@drawable/bottom_record_colors"
+                            app:layout_constraintEnd_toStartOf="@+id/mapBtnOther"
+                            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+                        <ImageButton
+                            android:id="@+id/mapBtnOther"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@color/projectOrange"
+                            android:scaleType="fitXY"
+                            android:layout_marginStart="2dp"
+                            android:src="@drawable/map_spot"
+                            app:itemIconTint="@drawable/bottom_record_colors"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/editTextOtherComment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DataPick">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:text="Интервал начала"></TextView>
+
+                    <Spinner
+                        android:id="@+id/IntervalStart"
+                        android:background="@drawable/spinner_draw"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:minHeight="15dp"
+                        style="?android:attr/spinnerItemStyle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Время записи" />
+
+                    <Spinner
+                        android:id="@+id/TimeRecord"
+                        android:background="@drawable/spinner_draw"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:minHeight="15dp"
+                        style="@style/Widget.AppCompat.DropDownItem.Spinner"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editTextOtherComment"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/comment_edit"
+                android:gravity="top|left"
+                android:hint="Введите коментарий по желанию"
+                android:inputType="textCapSentences|textMultiLine"
+                android:lines="8"
+                android:minHeight="200dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Время мойки"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/TimeTVOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/projectOrange" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:minHeight="15dp"
-                style="@style/Widget.AppCompat.DropDownItem.Spinner" />
-        </LinearLayout>
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Итого"
+                    android:textAlignment="textEnd" />
 
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Время записи" />
+                <TextView
+                    android:id="@+id/PriceTVOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/projectOrange" />
+            </LinearLayout>
 
-            <Spinner
-                android:id="@+id/TimeRecord"
-                android:background="@drawable/spinner_draw"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:minHeight="15dp"
-                style="@style/Widget.AppCompat.DropDownItem.Spinner" />
+            <Button
+                android:id="@+id/RecordButtonMainOther"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/projectOrange"
+                android:fontFamily="@font/roboto"
+                android:onClick="nextButtonMain_onClick"
+                android:text="Записаться"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-        </LinearLayout>
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/editTextOtherComment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/comment_edit"
-        android:gravity="top|left"
-        android:hint="Введите коментарий по желанию"
-        android:inputType="textCapSentences|textMultiLine"
-        android:lines="8"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Время мойки"
-            android:textAlignment="textEnd" />
-
-        <TextView
-            android:id="@+id/TimeTVOther"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="textStart"
-            android:textColor="@color/projectOrange" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/nextButtonMain"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Итого"
-            android:textAlignment="textEnd" />
-
-        <TextView
-            android:id="@+id/PriceTVOther"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="textStart"
-            android:textColor="@color/projectOrange" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/RecordButtonMainOther"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/projectOrange"
-        android:fontFamily="@font/roboto"
-        android:onClick="nextButtonMain_onClick"
-        android:text="Записаться"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/helpTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-    <TextView
-        android:id="@+id/helpTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:text="Не устраивает время?"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/OtherAvtoMoyTV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RecordButtonMainOther" />
-
-    <TextView
-        android:id="@+id/OtherAvtoMoyTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:clickable="true"
-        android:text="Выбрать другую автомойку >"
-        android:textAlignment="center"
-        android:textColor="@color/projectOrange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpTime" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
