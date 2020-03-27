@@ -249,13 +249,13 @@ public class WashingRegistration1 extends Fragment {
                     String str_answer;
                     PeriodsClass periods = null;
                     try {
-                        str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y + "&carWashId=" + AutoRegActivity.carWashId+"&duration="+service_time_price.getResponse().getFormatTime().getApproximateMinutes()).get();
-                        Log.i("My",service_time_price.getResponse().getFormatTime().getApproximateMinutes().toString());
-                        periods = deserializePeriodsResult(str_answer);
-                        if (periods == null) {
-                            Toast.makeText(getActivity(), "Выбери другую дату или другую автомойку", Toast.LENGTH_SHORT).show();
-                        } else {
-                            if ((AutoRegActivity.SelectServices.size() != 0) || (AutoRegActivity.SelectComplex.size() != 0)) {
+                        if ((AutoRegActivity.SelectServices.size() != 0) || (AutoRegActivity.SelectComplex.size() != 0)) {
+                            str_answer = new ThreadRequest().execute("get-select-map-periods", token, "date=" + HomeFragment.dd + "." + HomeFragment.m + "." + HomeFragment.y + "&carWashId=" + AutoRegActivity.carWashId+"&duration="+service_time_price.getResponse().getFormatTime().getApproximateMinutes()).get();
+                            Log.i("My",service_time_price.getResponse().getFormatTime().getApproximateMinutes().toString());
+                            periods = deserializePeriodsResult(str_answer);
+                            if (periods == null) {
+                                Toast.makeText(getActivity(), "Выбери другую дату или другую автомойку", Toast.LENGTH_SHORT).show();
+                            } else {
                                 fragment.setVisibility(View.INVISIBLE);
                                 Bundle args = new Bundle();
                                 args.putString("token", token);
@@ -266,10 +266,11 @@ public class WashingRegistration1 extends Fragment {
                                 args.putString("price", service_time_price.getResponse().getPrice().getServices().getPrice().toString());
                                 fragmentWashingReg.setArguments(args);
                                 LoadFragment(fragmentWashingReg);
-                            } else {
-                                Toast.makeText(getActivity(), "Вы должны выбрать хотя бы один комплекс или услугу", Toast.LENGTH_SHORT).show();
                             }
+                        } else {
+                            Toast.makeText(getActivity(), "Вы должны выбрать хотя бы один комплекс или услугу", Toast.LENGTH_SHORT).show();
                         }
+
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
